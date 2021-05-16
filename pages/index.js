@@ -20,12 +20,7 @@ export default function Home() {
           Get started by downloading Doorgy App on Google Play!
           <br />
           <a href="https://github.anth.dev/Doorgy-App">
-            <Image
-              src="/google-play-badge.png"
-              alt="Google Play Badge"
-              width={161.5}
-              height={62.5}
-            />
+            <img src="/google-play-badge.png" alt="Google Play Badge" className="logo" width="250px" />
           </a>
           <br />
           Need Doorgy Service?{' '}
