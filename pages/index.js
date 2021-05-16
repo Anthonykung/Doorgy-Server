@@ -46,7 +46,7 @@ export default function Home() {
           Doorgy Project includes the following 3 parts:
         </p>
 
-        <div className={styles.grid} style={{ display: 'flex' }}>
+        <div className={styles.grid}>
           <a href="https://github.anth.dev/Doorgy" className={styles.card}>
             <h2>Doorgy &rarr;</h2>
             <p>The Doorgy device which includes the physical Doorgy Door and the Doorgy Service that rans on Raspberry Pi</p>
