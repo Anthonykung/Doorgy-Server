@@ -74,7 +74,7 @@ class DB {
   }
 }
 
-export default async function config() {
+export default async function dbConfig() {
   if (!client.isConnected()) await client.connect();
   let mongo = new DB(client.db('Doorgy'), client);
   return mongo;

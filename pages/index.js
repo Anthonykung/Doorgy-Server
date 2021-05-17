@@ -6,9 +6,14 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Doorgy</title>
-        <meta name="description" content="Created with <3 by Anthony Kung" />
+        <meta name="description" content="Doorgy - Smart Pet Door" />
+        <meta name="keywords" content="Doorgy" />
         <link rel="icon" href="/Doorgy-512.png" />
+        <meta name="generator" content="Doorgy by Anthony Kung" />
+        <meta name="creator" content="Anthony Kung (anth.dev)" />
+        <meta name="designer" content="Anthony Kung (anth.dev)" />
       </Head>
 
       <main className={styles.main}>
