@@ -6,13 +6,20 @@ const client = new MongoClient(process.env.MONGO, {
   useUnifiedTopology: true,
 });
 
-class DB {
-  constructor(db, client) {
-    this.db = db;
+export default class DB {
+  constructor() {
+    // Need to call DB.connect() before use!
+  }
+
+  connect = async () => {
+    if (!client.isConnected()) {
+      await client.connect();
+    }
+    this.db = client.db('Doorgy');
     this.client = client;
   }
 
-  async add(dest, data) {
+  add = async (dest, data) => {
     try {
       let collection = await this.db.collection(dest);
       await collection.insertOne(data, function(err, res) {
@@ -26,10 +33,20 @@ class DB {
     }
   }
 
-  async get(location, identifier) {
+  /**
+   * Database Get Function.
+   *
+   * Get object identified by identifier from database.
+   *
+   * @name   getObj
+   * @access public
+   * @param  {string} location
+   * @param  {object} identifier
+   */
+  getObj = async (location, identifier) => {
     try {
       let collection = await this.db.collection(location);
-      let result = await collection.findOne(identifier, function(err, res) {
+      let result = await collection.findOne(identifier).then(function(res, err) {
         if (err) throw err;
         return res;
       });
@@ -41,7 +58,7 @@ class DB {
     }
   }
 
-  async update(location, identifier, newdata) {
+  update = async (location, identifier, newdata) => {
     try {
       let collection = await this.db.collection(location);
       let newvalues = { $set: newdata };
@@ -57,7 +74,7 @@ class DB {
     }
   }
 
-  async updateCookie(identifier, newdata) {
+  updateCookie = async (identifier, newdata) => {
     try {
       let collection = await this.db.collection('sessions');
       let newvalues = { $set: newdata };
@@ -72,10 +89,4 @@ class DB {
       return null;
     }
   }
-}
-
-export default async function dbConfig() {
-  if (!client.isConnected()) await client.connect();
-  let mongo = new DB(client.db('Doorgy'), client);
-  return mongo;
 }
